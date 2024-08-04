@@ -12,7 +12,7 @@
 <style>
   .card {
     position: relative;
-    height: 240px;
+    height: 220px;
     overflow: hidden;
     border: 2px solid #468189;
     color: #F4E9CD;
