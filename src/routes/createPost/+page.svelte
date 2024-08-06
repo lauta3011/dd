@@ -1,4 +1,8 @@
 <script>
+    import FormButtons from "$lib/components/form_buttons/FormButtons.svelte";
+    import Input from "$lib/components/input/Input.svelte";
+    import { goto } from '$app/navigation';
+
     let title = '';
     let author = '';
     let date = '';
@@ -12,68 +16,35 @@
         content,
       };
   
-      // Aquí puedes realizar la lógica para guardar el nuevo post en tu aplicación
       console.log('Nuevo post:', newPost);
-  
-      // Limpia los campos del formulario después de enviar los datos
-      title = '';
-      author = '';
-      date = '';
-      content = '';
+    }
+
+    function handleCancel() {
+        title = '';
+        author = '';
+        date = '';
+        content = '';
+
+        goto('/');
     }
   </script>
   
   <style>
     .form {
       display: flex;
+      border: 1px solid #468189;
+      border-radius: 15px;
+      color: #F4E9CD;
       flex-direction: column;
       margin: 20px;
-    }
-  
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 10px;
-    }
-  
-    .form-field label {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-  
-    .form-field input,
-    .form-field textarea {
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-  
-    .submit-button {
-      padding: 8px 12px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      padding: 20px;
     }
   </style>
   
   <div class="form">
-    <div class="form-field">
-      <label for="title">Título</label>
-      <input id="title" bind:value={title} type="text" />
-    </div>
-    <div class="form-field">
-      <label for="author">Autor</label>
-      <input id="author" bind:value={author} type="text" />
-    </div>
-    <div class="form-field">
-      <label for="date">Fecha</label>
-      <input id="date" bind:value={date} type="text" />
-    </div>
-    <div class="form-field">
-      <label for="content">Contenido</label>
-      <textarea id="content" bind:value={content}></textarea>
-    </div>
-    <button class="submit-button" on:click={handleSubmit}>Agregar post</button>
+    <h1>Crea un nuevo post</h1>
+    <Input label="* Titulo" type="text" bind:value={title} />
+    <Input label="* Contenido" type="textarea" bind:value={content} />
+
+    <FormButtons handleCancel={() => handleCancel()} handleSubmit={() => handleSubmit()} />
   </div>

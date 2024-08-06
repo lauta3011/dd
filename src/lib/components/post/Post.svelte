@@ -1,9 +1,10 @@
 <script lang="ts">
-  import ActionButtons from "$lib/components/actionButtons/ActionButtons.svelte";
+  import PostButtons from "$lib/components/post_buttons/PostButtons.svelte";
 
   export let nickname: string;
   export let username: string;
   export let date: string;
+  export let title: string;
   export let text: string;
 
   let onHover = false;
@@ -12,12 +13,14 @@
 <style>
   .card {
     position: relative;
-    height: 220px;
+    background-color: #041925;
+    height: 260px;
     overflow: hidden;
-    border: 2px solid #468189;
+    border: 1px solid #468189;
     color: #F4E9CD;
     border-radius: 4px;
     margin-bottom: 10px;
+    box-shadow: 0 0 15px 0 #041925;
   }
 
   .card-footer {
@@ -60,6 +63,7 @@
 
 <article class:onHover class="card" on:mouseenter={() => onHover = true } on:mouseleave={() => onHover = false } >
   <div class="content">
+
     <div class="card-header">
       <div class="userInfo">
         <span class="nickname">{nickname}</span>
@@ -68,10 +72,11 @@
       <div class="secondary">{date}</div>
     </div>
     
+    <h3>{title}</h3>
     <p>{text}</p>
   </div>
 
   <div class="card-footer">
-    <ActionButtons />
+    <PostButtons />
   </div>
 </article>

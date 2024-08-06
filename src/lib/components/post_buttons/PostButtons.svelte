@@ -23,7 +23,7 @@
     <button class="card-action-button">
         <i class="fas fa-comments"></i>
     </button>
-    <button class="card-action-button">
+    <!-- <button class="card-action-button">
         <i class="fas fa-comment-alt"></i>
-    </button>
+    </button> -->
 </div>
