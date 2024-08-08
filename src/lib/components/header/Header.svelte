@@ -1,7 +1,6 @@
-<script>
-  import Input from "$lib/components/input/Input.svelte";
-  
-  let search = "";
+<script>  
+  import AddPost from "$lib/components/add_post/AddPost.svelte";
+  let addPost = false;
 </script>
   
   <style>
@@ -15,11 +14,13 @@
       box-shadow: 0 0 15px 0 #041925;
     }
     
-    nav {
+    .nav {
         display: inline-flex;
     }
 
-    a {
+    a, button {
+      background-color: transparent;
+      font-size: medium;
       transition: .5s;
       padding: 8px 12px;
       margin-right: 15px;
@@ -30,29 +31,25 @@
       cursor: pointer;
     }
 
-    a:hover {
+    a:hover, button:hover {
       background-color: #77ACA2;
+    }
+
+    .post-modal {
+      display: flex;
+      justify-content: center;
     }
   </style>
   
+{#if (addPost)}
+  <div class="post-modal">
+    <AddPost handleClick={() => addPost = false }/>
+  </div>
+{/if}
+
 <div class="header">
-    <input
-        class="search-input"
-        type="text"
-        placeholder="Buscar..."
-        on:input={event => onSearch(event.target.value)}
-    />
-    <!-- <Input label="Busca algo" type="text" bind:value={search} /> -->
-
-    <nav>
-        <a href="/">home</a>
-        <a href="/createPost">
-            + post
-        </a>
-
-        <!-- agregar screen de perfil -->
-        <a>
-          perfil
-        </a>    
-    </nav>
+    <div class="nav">
+        <a>home</a>
+        <button on:click={() => addPost = !addPost}>+ post</button>
+    </div>    
 </div>
